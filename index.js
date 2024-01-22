@@ -18,23 +18,58 @@ class LinkedList {
         if (this.head == null) {
             this.head = node;
         } else {
-            element = this.head;
+            currunt = this.head;
 
-            while (element.next) {
-                element = element.next;
+            while (currunt.next) {
+                currunt = currunt.next;
             }
 
-            element.next = node;
-            console.log(element, "ELemebnt");
+            currunt.next = node;
         }
         this.size++;
-        console.log(this.size, "Size");
+        console.log(currunt, "currunt | currunt");
+        console.log(this.size, "SIZE");
+    }
+
+    insertAt(element, index) {
+        if (index < 0 || index > this.size) {
+            return console.log("Please enter a valid index.");
+        }
+
+        // Creates a new Node
+        const node = new Node(element);
+        let currnt, previous;
+
+        currnt = this.head;
+
+        // add the element to the fiest element
+        if (index == 0) {
+            node.next = this.head;
+            this.head = node;
+        } else {
+            currnt = this.head;
+            let it = 0;
+
+            while (it < index) {
+                it++;
+                previous = currnt;
+                currnt = currnt.next;
+            }
+
+            // Adding an element
+            node.next = currnt;
+            previous.next = node;
+        }
+        this.size++;
+        console.log(node, ":node");
+        console.log(this.size, ":size");
     }
 }
 
 const list = new LinkedList();
-
-list.add(10);
-list.add(5);
-list.add(50);
-list.add(30);
+list.add(12)
+list.add(13)
+list.add(14)
+list.add(15)
+list.add(16)
+list.insertAt(20, 2);
